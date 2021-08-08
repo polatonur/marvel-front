@@ -26,29 +26,46 @@ body > * {
 /* search bar */
 
 .search-search {
-  padding: 0 10px;
+  z-index: 5;
+  border-bottom: 2px solid black;
+  color: black;
+  padding: 0 40px;
   width: 100%;
   height: 60px;
-  background-color: #f5f6f7;
+  background-color: white;
+  position: sticky;
+  top: 0px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 .search-search input {
+  background-color: white;
   height: 100%;
   width: 80%;
   outline: none;
   border: none;
+  font-size: 1.3rem;
+}
+
+.search-search input::placeholder {
+  color: grey;
+  font-weight: lighter;
+  font-size: 1rem;
+}
+svg:not(:root).svg-inline--fa {
+  border: none;
 }
 /*-------------------------SIGN UP---------------------------*/
 .signup {
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   width: 100vw;
-  display: NONE;
+  display: none;
   align-items: center;
   justify-content: center;
   background-color: rgb(95, 94, 94, 0.7);
@@ -141,6 +158,7 @@ body > * {
 }
 /*-------------------------LOGIN---------------------------*/
 .login {
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
@@ -255,16 +273,25 @@ header {
   height: 100%;
   justify-content: space-between;
 }
-.header-main > .logo .header-login a {
+.header-main > .logo .header-login li {
+  cursor: pointer;
   margin-left: 20px;
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid white;
   font-size: 1rem;
 }
-.header-main > .logo .header-login a:hover {
+.header-main > .logo .header-login li:hover {
   background-color: red;
   color: #fcfcfc;
+}
+.header-main > .logo .header-login .logout {
+  background-color: red;
+  color: #fcfcfc;
+  display: none;
+}
+.header-main > .logo .header-login .logout:hover {
+  background-color: var(--marvel-black);
 }
 header .logo img {
   margin-top: 5px;
@@ -403,7 +430,7 @@ section.hero {
   border-radius: 20px;
 }
 .top-card .upper-card {
-  height: 100%;
+  height: 80%;
   width: 100%;
   border-radius: inherit;
 }
@@ -429,45 +456,220 @@ section.hero {
   display: flex;
   justify-content: flex-end;
 }
+.see-more:hover {
+  text-decoration: underline;
+}
 
-/*-------------------------COMICS PAGE---------------------------*/
+/*-------------------------COMICS - Characters PAGE---------------------------*/
+.comics .main-comics,
+.characters .main-characters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .comics {
   color: #dbd7d7;
 }
 .comics img {
-  object-fit: cover;
   height: 100%;
   width: 100%;
 }
-.comic-card > div {
-  width: 50%;
-}
+
 .comics .comic-card {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 2px solid rgb(124, 52, 52);
   display: flex;
-  background-color: beige;
-  border: 1px grey solid;
-  width: 1000px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  width: 500px;
   height: 500px;
   color: #202020;
-  margin-bottom: 20px;
+  margin: 10px;
+}
+.comic-card .heart {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  font-size: 1.3rem;
+  color: #515355;
+}
+.comic-card .heart:hover {
+  color: red;
 }
 .comics .comic-card div:last-child {
   padding: 20px;
+  width: 40%;
+}
+.comic-card-img {
+  width: 250px;
+  border-bottom: 2px solid red;
 }
 .comics .comic-card h1 {
+  border-bottom: 2px solid red;
   font-size: 1rem;
   margin-bottom: 20px;
 }
 .comics .comic-card p {
+  height: 80%;
+  margin-top: 5px;
+  overflow: scroll;
+  text-align: justify;
   font-size: 1rem;
   margin-bottom: 20px;
+  font-family: "Roboto", sans-serif;
+  line-height: 1.2rem;
+}
+
+.characters .character-card {
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 3px solid rgb(124, 52, 52);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 200px;
+  height: 400px;
+  margin: 10px;
+  border-radius: 20px;
+  background-color: rgb(75, 68, 68);
+}
+.character-card a {
+  height: 90%;
+}
+
+.character-card-img {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.character-card .heart {
+  color: white;
+  z-index: 5;
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.character-card .heart:hover {
+  color: red;
+}
+
+.character-card-img img {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom: 2px solid red;
+}
+.characters .character-card .character-card-title-div {
+  display: flex;
+  width: 100%;
+  padding: 10px 0 0 10px;
+  height: 20%;
+  color: #dbd7d7;
+}
+/*-------------------------favorites---------------------------*/
+.favoris h3 {
+  width: 100%;
+  margin: 50px 0 10px;
+  font-size: 2rem;
+  border-bottom: 2px solid;
+}
+.favoris .galerie-fav-com,
+.favoris .galerie-fav-char {
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.galerie-card-fav {
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(160, 83, 83);
+  height: 500px;
+  width: 250px;
+  background-color: var(--marvel-black);
+  color: white;
+}
+.galerie-card-fav img {
+  height: 80%;
+  width: 100%;
+  object-fit: cover;
+  box-sizing: border-box;
+  border-bottom: 2px red solid;
+}
+.galerie-card-fav .h2 {
+  font: 1em sans-serif;
+  padding: 10px 5px;
+  height: 20%;
+  display: flex;
+  justify-content: flex-start;
 }
 
 /*-------------------------ComicsOfCharacter---------------------------*/
-.comics-of-character {
-  color: azure;
+.comics-of-character .comics-of-character-hero {
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 100%;
+  height: 400px;
+  background-color: white;
+  display: flex;
+  border: 1px grey solid;
 }
-
+.comics-of-character h3 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+.comics-of-character-title {
+  padding: 20px;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  align-items: center;
+  width: 30%;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.comics-of-character-hero .comics-of-character-img {
+  height: 100%;
+  width: 70%;
+}
+.comics-of-character-hero .comics-of-character-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.galerie {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.galerie-card {
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid grey;
+  height: 400px;
+  width: 250px;
+}
+.galerie-card img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 /*-------------------------FOOTER---------------------------*/
 
 footer {
@@ -499,4 +701,54 @@ footer a {
   font-weight: bold;
   color: inherit;
   text-decoration: none;
+}
+/* // Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .hero .img-desc {
+    display: none;
+  }
+}
+
+/* // Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  header nav {
+    overflow-x: scroll;
+    padding-left: 40px;
+  }
+  section.hero {
+    height: 300px;
+  }
+  .signup {
+    width: 100vw;
+  }
+  .login {
+    width: 100vw;
+  }
+}
+/* // Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+}
+
+/* // Large devices (desktops, less than 1200px) */
+@media (max-width: 1290.98px) {
+  .container {
+    width: 100vw;
+  }
+  header {
+    padding: 0 10px;
+  }
+  .top {
+    box-sizing: border-box;
+  }
+  .top > section {
+    width: 95%;
+    margin: 20px auto;
+  }
+  .search-search {
+    box-sizing: border-box;
+    width: 100vw;
+  }
+  .characters {
+    width: 100vw;
+  }
 }

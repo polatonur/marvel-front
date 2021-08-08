@@ -1,34 +1,8 @@
-import axios from "axios";
-import { Link } from "react-router-dom";
 import thonosHero from "../assets/img/thanos_hero.jpeg";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
-import Top from "../components/Top";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const Home = (props) => {
-  const handleClick1 = async () => {
-    const response = await axios.post("http://localhost:5000/comics");
-    console.log(response.data.comics.results.splice(0, 10));
-  };
-  const handleClick2 = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/characters");
-      console.log(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-  const handleClick3 = async () => {
-    try {
-      const response = await axios.get(
-        "http://localhost:5000/comics/5fce13f978edeb0017c92dd4"
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+import Top from "../components/Top";
+
+const Home = ({}) => {
   return (
     <div>
       <section className="hero">
@@ -45,8 +19,6 @@ const Home = (props) => {
         </div>
       </section>
       <Top />
-      <Login />
-      <Signup />
     </div>
   );
 };

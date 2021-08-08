@@ -2,6 +2,7 @@ import BestSellerCarousel from "./BestSellerCarousel";
 import PupularCarousel from "./PupularCarousel";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Top = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,7 +10,9 @@ const Top = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000");
+        const response = await axios.get(
+          "https://marvel-back-onur.herokuapp.com"
+        );
         console.log(response.data);
         setData(response.data);
         setIsLoading(false);
@@ -32,7 +35,9 @@ const Top = () => {
           <PupularCarousel data={data.characters} />
         </div>
         <div>
-          <p className="see-more">see more</p>
+          <Link to="/characters" className="see-more">
+            see more
+          </Link>
         </div>
       </section>
       <section className="last-comics">
@@ -43,7 +48,9 @@ const Top = () => {
           <BestSellerCarousel data={data.comics} />
         </div>
         <div>
-          <p className="see-more">see more</p>
+          <Link to="/comics" className="see-more">
+            see more
+          </Link>
         </div>
       </section>
     </div>

@@ -1,9 +1,9 @@
 export default ({ data }) => {
-  return data.results.map((elem) => {
+  return data.results.map((elem, index) => {
     return (
       elem.thumbnail.path !==
         "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" && (
-        <div className="top-card">
+        <div key={index} className="top-card">
           <div className="upper-card">
             <img
               src={elem.thumbnail.path + "." + elem.thumbnail.extension}

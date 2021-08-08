@@ -1,5 +1,4 @@
 import marvelLogo from "../assets/img/Marvel.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
   return (

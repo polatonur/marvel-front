@@ -16,7 +16,7 @@ const ComicsOfCharacter = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:5000/comics/${location.state.id}`
+        `https://marvel-back-onur.herokuapp.com/comics/${location.state.id}`
       );
       console.log(response.data);
       setCharactersData(response.data);
@@ -28,13 +28,27 @@ const ComicsOfCharacter = () => {
   return isLoading ? (
     <div>Page is loading</div>
   ) : (
-    <div className="comics-of-character">
-      <div>{charactersData.comic_data.name}</div>
-      <div>{charactersData.comic_data.description}</div>
+    <div className="comics-of-character container">
+      <div className="comics-of-character-hero">
+        <div className="comics-of-character-title">
+          {charactersData.comic_data.name}
+        </div>
+        <div className="comics-of-character-img">
+          <img
+            src={
+              charactersData.comic_data.thumbnail.path +
+              "." +
+              charactersData.comic_data.thumbnail.extension
+            }
+            alt=""
+          />
+        </div>
+      </div>
+      <h3>Comics</h3>
       <div className="galerie">
         {charactersData.comic_data.comics.map((elem) => {
           return (
-            <div>
+            <div className="galerie-card">
               <img
                 src={elem.thumbnail.path + "." + elem.thumbnail.extension}
                 alt=""

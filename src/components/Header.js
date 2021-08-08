@@ -1,8 +1,19 @@
 import { Link } from "react-router-dom";
 import marvelLogo from "../assets/img/Marvel.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Login from "./Login";
+import Signup from "./Signup";
 
-const Header = () => {
+const Header = ({
+  displayLogin,
+  setDisplayLogin,
+  displaySignup,
+  setDisplaySignup,
+  userToken,
+  setUserToken,
+  setUser,
+  lastPage,
+  setLastPage,
+}) => {
   return (
     <header>
       <div className="header-main container">
@@ -13,12 +24,25 @@ const Header = () => {
             </Link>
           </div>
           <div className="header-login">
-            <Link>
-              <li>Sign up</li>
-            </Link>
-            <Link>
-              <li>Login</li>
-            </Link>
+            <li
+              style={{ display: userToken && "none" }}
+              onClick={() => setDisplaySignup(true)}
+            >
+              Sign up
+            </li>
+            <li
+              style={{ display: userToken && "none" }}
+              onClick={() => setDisplayLogin(true)}
+            >
+              Login
+            </li>
+            <li
+              className="logout"
+              style={{ display: userToken && "block" }}
+              onClick={() => setUserToken(null)}
+            >
+              Log out
+            </li>
           </div>
         </div>
         <nav>
@@ -28,11 +52,11 @@ const Header = () => {
             </Link>{" "}
             <Link to="/comics">
               {" "}
-              <li to="/comics">Comics</li>
+              <li>Comics</li>
             </Link>
-            <Link to="/comics">
+            <Link to="/favoris">
               {" "}
-              <li to="/">Favoris</li>
+              <li>Favorites</li>
             </Link>
             <Link>
               <li>More</li>
@@ -40,6 +64,28 @@ const Header = () => {
           </ul>
         </nav>
       </div>
+      <Login
+        setUser={setUser}
+        userToken={userToken}
+        setUserToken={setUserToken}
+        displayLogin={displayLogin}
+        setDisplayLogin={setDisplayLogin}
+        setDisplaySignup={setDisplaySignup}
+        displaySignup={displaySignup}
+        setLastPage={setLastPage}
+        lastPage={lastPage}
+      />
+      <Signup
+        setUser={setUser}
+        userToken={userToken}
+        setUserToken={setUserToken}
+        displayLogin={displayLogin}
+        setDisplayLogin={setDisplayLogin}
+        setDisplaySignup={setDisplaySignup}
+        displaySignup={displaySignup}
+        setLastPage={setLastPage}
+        lastPage={lastPage}
+      />
     </header>
   );
 };
