@@ -16,12 +16,12 @@ const Footer = () => {
         </p>
       </div>
       <div>
-        <h1>FOLLOW MARWEL</h1>
+        {/* <h1>FOLLOW MARWEL</h1>
         <div className="social-media">
           <FontAwesomeIcon icon="search" />
           <FontAwesomeIcon icon="youtube" />
           <FontAwesomeIcon icon="instagram" />
-        </div>
+        </div> */}
       </div>
     </footer>
   );

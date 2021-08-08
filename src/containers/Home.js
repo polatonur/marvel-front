@@ -44,17 +44,7 @@ const Home = (props) => {
           </div>
         </div>
       </section>
-      {/* <Top /> */}
-
-      <div className="temp">
-        <h1>Marvel</h1>
-        <button onClick={handleClick1}>GET Comics</button>
-        <button onClick={handleClick2}>GET Characters</button>
-        <button onClick={handleClick3}>GET Comicwithid</button>
-        <Link to="/comics">Comics</Link>
-        <Link to="/characters">Characters</Link>
-        <Link to="/">Home</Link>
-      </div>
+      <Top />
       <Login />
       <Signup />
     </div>
