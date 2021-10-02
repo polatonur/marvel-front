@@ -6,7 +6,7 @@
     <img src=https://github.com/polatonur/readme_pics/blob/master/react-router.png?raw=true" alt="Logo" width="80" height="80"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <img src="https://github.com/polatonur/readme_pics/blob/master/mongoDB.svg?raw=true" alt="Logo" width="180" height="80">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-  <h3 align="center">Marvel characcters and comiscs app</h3>
+  <h3 align="center">Marvel characters and comiscs app</h3>
 
   <p align="center">
     <br />
@@ -50,8 +50,8 @@
 - Reusable pagination component
 - The app is fully responsive.
 - Login, signup modals
-  <!-- <br/>
-  <br/> -->
+  <br/>
+  <br/>
   ![alt text](https://github.com/polatonur/readme_pics/blob/master/marvel_modal_gif.gif?raw=true)
 
 ### Built With
