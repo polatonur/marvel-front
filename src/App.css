@@ -1085,6 +1085,11 @@ footer a {
   .login {
     width: 100vw;
   }
+  .signup .signup-main form,
+  .login .login-main form {
+    margin-top: 20%;
+  }
+
   .arrow-left,
   .arrow-right {
     font-size: 1rem;
@@ -1110,6 +1115,9 @@ footer a {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
+  .search-icon {
+    display: none;
+  }
   .bottom-desc {
     display: flex;
     align-items: center;
