@@ -1111,12 +1111,47 @@ footer a {
   .close-modal:hover {
     transform: rotate(180deg);
   }
+  .favoris .galerie-fav-com,
+  .favoris .galerie-fav-char {
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+  }
+  .galerie-card-fav {
+    flex-shrink: 0;
+    width: 200px;
+    height: 400px;
+  }
+  .search-icon {
+    display: none;
+  }
+  .delete-fav {
+    top: 7px;
+    right: 7px;
+    font-size: 1rem;
+    height: 1rem;
+  }
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
+  .favoris .galerie-fav-com,
+  .favoris .galerie-fav-char {
+    overflow-x: scroll;
+    flex-wrap: nowrap;
+  }
+  .galerie-card-fav {
+    flex-shrink: 0;
+    width: 125px;
+    height: 250px;
+  }
   .search-icon {
     display: none;
+  }
+  .delete-fav {
+    top: 7px;
+    right: 7px;
+    font-size: 1rem;
+    height: 1rem;
   }
   .bottom-desc {
     display: flex;
