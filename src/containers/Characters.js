@@ -15,10 +15,23 @@ const Characters = ({
   const [charactersData, setCharactersData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [pageNo, setPageNo] = useState(1);
+
+  const getPageLimit = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 1120) {
+      return 100;
+    } else if (screenWidth > 900) {
+      return 50;
+    } else if (screenWidth > 700) {
+      return 30;
+    } else {
+      return 10;
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://marvel-back-onur.herokuapp.com/characters?limit=100&skip=`
+        `https://marvel-back-onur.herokuapp.com/characters?limit=${getPageLimit()}`
       );
       console.log(response.data);
       setCharactersData(response.data);
@@ -27,9 +40,12 @@ const Characters = ({
     fetchData();
   }, []);
 
+  const screenWidth = window.innerWidth;
+  console.log("screenWidth", screenWidth);
+
   const handlePageChange = async (pageNumber) => {
     const response = await axios.get(
-      `https://marvel-back-onur.herokuapp.com/characters?limit=100&skip=${
+      `https://marvel-back-onur.herokuapp.com/characters?limit=${getPageLimit()}&skip=${
         pageNumber * 100
       }`
     );
@@ -43,7 +59,7 @@ const Characters = ({
     const params = { name: title };
 
     const response = await axios.get(
-      `https://marvel-back-onur.herokuapp.com/characters?limit=100`,
+      `https://marvel-back-onur.herokuapp.com/characters?limit=${getPageLimit()}`,
       {
         params,
       }
@@ -80,7 +96,7 @@ const Characters = ({
         <input
           // value={searchedText}
           type="search"
-          placeholder="Search"
+          placeholder=" What are you looking for?"
           onChange={handlerSearch}
         />
       </div>
@@ -126,7 +142,7 @@ const Characters = ({
       </div>
       <Pagination
         activePage={pageNo}
-        itemsCountPerPage={100}
+        itemsCountPerPage={getPageLimit()}
         totalItemsCount={charactersData.characters.count}
         pageRangeDisplayed={5}
         onChange={handlePageChange}

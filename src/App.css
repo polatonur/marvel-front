@@ -38,6 +38,25 @@ body > * {
 .pagination li {
   margin: 4px;
 }
+
+input[type="color"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+select:focus,
+textarea {
+  font-size: 16px;
+}
 /* search bar */
 
 .search-search {
@@ -57,7 +76,7 @@ body > * {
 .search-search input {
   background-color: white;
   height: 100%;
-  width: 80%;
+  width: 90%;
   outline: none;
   border: none;
   font-size: 1.3rem;
@@ -70,6 +89,15 @@ body > * {
 }
 svg:not(:root).svg-inline--fa {
   border: none;
+}
+.comic-see-more {
+  font-size: 1rem;
+  color: #202020;
+  text-align: center;
+  cursor: pointer;
+}
+.comic-see-more:hover {
+  text-decoration: underline;
 }
 /*-------------------------SIGN UP---------------------------*/
 .signup {
@@ -1018,10 +1046,10 @@ footer a {
   .hero .img-desc {
     box-sizing: border-box;
     left: 0;
-    top: 60%;
+    top: 50%;
     bottom: 0;
     border-radius: 0;
-    height: 40%;
+    height: 50%;
     width: 100%;
     overflow: hidden;
     background-color: rgb(172, 162, 162, 0.5);
@@ -1032,7 +1060,7 @@ footer a {
     margin-bottom: 10px;
   }
   .hero .img-desc p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 20px;
   }
   .top > section {
@@ -1070,7 +1098,6 @@ footer a {
   .signup .signup-main {
     height: 100vh;
     width: 100vw;
-    padding-top: 50%;
   }
   .close-modal {
     font-size: 1.5rem;
@@ -1083,6 +1110,31 @@ footer a {
 
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
+  .bottom-desc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 83vw;
+    background-color: rgb(67, 67, 67);
+    padding: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  .bottom-desc p {
+    line-height: 1.2rem;
+  }
+  .desc-block {
+    display: none;
+  }
+  .desc-block p {
+    display: none;
+  }
+  .comic-card:hover .desc-block {
+    top: -500px;
+  }
   .main-title {
     font-size: 2rem;
   }
@@ -1096,13 +1148,13 @@ footer a {
     width: 120px;
   }
   .hero .img-desc h1 {
-    font-size: 1rem;
-    line-height: 1.2rem;
+    font-size: 1.3rem;
+    line-height: 1.4rem;
     margin-bottom: 10px;
   }
   .hero .img-desc p {
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 14px;
+    line-height: 18px;
   }
   .top > section h1 {
     font-size: 1.2rem;

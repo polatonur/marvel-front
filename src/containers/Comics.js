@@ -8,6 +8,19 @@ const Comics = ({ setDisplayLogin, userToken }) => {
   const [comicsData, setComicsData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [pageNo, setPageNo] = useState(1);
+  const [displayDetails, setDisplayDetails] = useState(null);
+  const getPageLimit = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 1120) {
+      return 100;
+    } else if (screenWidth > 900) {
+      return 50;
+    } else if (screenWidth > 700) {
+      return 30;
+    } else {
+      return 10;
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +28,7 @@ const Comics = ({ setDisplayLogin, userToken }) => {
         const response = await axios.post(
           "https://marvel-back-onur.herokuapp.com/comics?",
           {
-            limit: 100,
+            limit: getPageLimit(),
           }
         );
         console.log(response.data);
@@ -29,11 +42,11 @@ const Comics = ({ setDisplayLogin, userToken }) => {
   }, []);
 
   const handlePageChange = async (pageNumber) => {
-    let skip = pageNumber * 100;
+    let skip = pageNumber * getPageLimit();
     const response = await axios.post(
       `https://marvel-back-onur.herokuapp.com/comics?`,
       {
-        limit: 100,
+        limit: getPageLimit(),
         skip: skip,
       }
     );
@@ -47,7 +60,7 @@ const Comics = ({ setDisplayLogin, userToken }) => {
     const title = event.target.value;
 
     const response = await axios.post(
-      `https://marvel-back-onur.herokuapp.com/comics?limit=100`,
+      `https://marvel-back-onur.herokuapp.com/comics?limit=${getPageLimit()}`,
       {
         title: title,
       }
@@ -89,7 +102,7 @@ const Comics = ({ setDisplayLogin, userToken }) => {
         <input
           // value={searchedText}
           type="search"
-          placeholder="Search"
+          placeholder="What are you looking for?"
           onChange={handlerSearch}
         />
       </div>
@@ -98,31 +111,54 @@ const Comics = ({ setDisplayLogin, userToken }) => {
           return (
             elem.thumbnail.path !==
               "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" && (
-              <div key={elem._id} className="comic-card">
-                <div className="comic-card-img">
-                  <div
-                    className="heart"
-                    onClick={() => {
-                      handleClick(elem);
-                    }}
-                  >
-                    <FontAwesomeIcon icon="heart" />
+              <div>
+                <div key={elem._id} className="comic-card">
+                  <div className="comic-card-img">
+                    <div
+                      className="heart"
+                      onClick={() => {
+                        handleClick(elem);
+                      }}
+                    >
+                      <FontAwesomeIcon icon="heart" />
+                    </div>
+                    <img
+                      src={elem.thumbnail.path + "." + elem.thumbnail.extension}
+                      alt=""
+                    />{" "}
                   </div>
-                  <img
-                    src={elem.thumbnail.path + "." + elem.thumbnail.extension}
-                    alt=""
-                  />{" "}
+                  <h1 className="comic-card-title">{elem.title}</h1>
+                  <div className="desc-block">
+                    <p className="comic-card-description">
+                      {elem.description
+                        ?.replace(/&#39;s /gi, "")
+                        ?.replace(/ &ndash;/gi, "")
+                        .replace(/\s\s+/g, " ")}
+                    </p>
+                  </div>
                 </div>
-                <h1 className="comic-card-title">{elem.title}</h1>
-
-                <div className="desc-block">
-                  <p className="comic-card-description">
-                    {elem.description
-                      ?.replace(/&#39;s /gi, "")
-                      ?.replace(/ &ndash;/gi, "")
-                      .replace(/\s\s+/g, " ")}
+                {displayDetails === elem._id && (
+                  <div className="bottom-desc">
+                    <p>
+                      {elem.description
+                        ?.replace(/&#39;s /gi, "")
+                        ?.replace(/ &ndash;/gi, "")
+                        .replace(/\s\s+/g, " ")}
+                    </p>
+                  </div>
+                )}
+                {window.innerWidth < 545 && (
+                  <p
+                    onClick={() => {
+                      displayDetails === null
+                        ? setDisplayDetails(elem._id)
+                        : setDisplayDetails(null);
+                    }}
+                    className="comic-see-more"
+                  >
+                    {!displayDetails ? "Show  Details" : "Hide Details"}
                   </p>
-                </div>
+                )}
               </div>
             )
           );
@@ -130,7 +166,7 @@ const Comics = ({ setDisplayLogin, userToken }) => {
       </div>
       <Pagination
         activePage={pageNo}
-        itemsCountPerPage={100}
+        itemsCountPerPage={getPageLimit()}
         totalItemsCount={comicsData.comics.count}
         pageRangeDisplayed={5}
         onChange={handlePageChange}
