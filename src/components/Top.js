@@ -14,7 +14,7 @@ const Top = () => {
         const response = await axios.get(
           "https://marvel-back-onur.herokuapp.com"
         );
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (err) {

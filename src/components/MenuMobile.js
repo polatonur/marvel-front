@@ -7,9 +7,7 @@ import { Link } from "react-router-dom";
 const MenuMobile = ({
   userToken,
   setUserToken,
-  displayLogin,
   setDisplayLogin,
-  displaySignup,
   setDisplaySignup,
 }) => {
   const [displayMenu, setDisplayMenu] = useState(false);
