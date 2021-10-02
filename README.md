@@ -45,14 +45,14 @@
 
 ![alt text](https://github.com/polatonur/readme_pics/blob/master/marvel_home_gif.gif?raw=true)
 
-- Login, signup modals
-  <!-- <br/>
-  <br/> -->
-  ![alt text](https://github.com/polatonur/readme_pics/blob/master/marvel_modal_gif.gif?raw=true)
 - Create your favorite list
 - Search comic or character
 - Reusable pagination component
 - The app is fully responsive.
+- Login, signup modals
+  <!-- <br/>
+  <br/> -->
+  ![alt text](https://github.com/polatonur/readme_pics/blob/master/marvel_modal_gif.gif?raw=true)
 
 ### Built With
 
