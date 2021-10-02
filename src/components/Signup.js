@@ -41,7 +41,7 @@ const Signup = ({
         setDisplaySignup(false);
       }
     } catch (error) {
-      setErrorMessage("User already exists");
+      setErrorMessage(error.response.data.message);
 
       console.log(error.message);
     }
@@ -50,7 +50,7 @@ const Signup = ({
   return (
     <div className="signup" style={{ display: displaySignup && "flex" }}>
       <div className="signup-main">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(event) => handleSubmit(event)}>
           <div className="close-icon">
             <FontAwesomeIcon
               onClick={() => setDisplaySignup(false)}
@@ -87,6 +87,7 @@ const Signup = ({
             <p>Already have an account?</p>
 
             <button
+              type="button"
               onClick={() => {
                 setDisplayLogin(true);
                 setDisplaySignup(false);

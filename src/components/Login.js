@@ -19,7 +19,8 @@ const Login = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`password : ${password} email : ${email}`);
+    console.log("submit");
+    // console.log(`password : ${password} email : ${email}`);
     try {
       const response = await axios.post(
         "https://marvel-back-onur.herokuapp.com/user/login",
@@ -37,7 +38,7 @@ const Login = ({
       setDisplayLogin(false);
       setErrorMessage("");
     } catch (error) {
-      setErrorMessage("user not found");
+      setErrorMessage(error.response.data.message);
       console.log(error.message);
     }
   };
@@ -45,7 +46,7 @@ const Login = ({
   return (
     <div className="login" style={{ display: displayLogin && "flex" }}>
       <div className="login-main">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(event) => handleSubmit(event)}>
           <div className="close-icon">
             <FontAwesomeIcon
               onClick={() => setDisplayLogin(false)}
@@ -74,6 +75,7 @@ const Login = ({
           <button type="submit">SIGN IN</button>
 
           <button
+            type="button"
             onClick={() => {
               setDisplayLogin(false);
               setDisplaySignup(true);
