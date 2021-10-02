@@ -4,16 +4,31 @@
   --marvel-white-light: #fcfcfc;
   --marvel-white-dark: #dbd7d7;
 }
+
 .container {
   margin: 0 auto;
   width: 1250px;
 }
 body > * {
+  scroll-behavior: smooth;
   font-family: "Roboto", sans-serif;
 }
 /* body {
   background-color:w;
 } */
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.top .carousel-sec::-webkit-scrollbar,
+.galerie::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.top .carousel-sec,
+.galerie {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 
 .pagination {
   display: flex;
@@ -26,11 +41,11 @@ body > * {
 /* search bar */
 
 .search-search {
+  box-sizing: border-box;
   z-index: 5;
   border-bottom: 2px solid black;
   color: black;
   padding: 0 40px;
-  width: 100%;
   height: 60px;
   background-color: white;
   position: sticky;
@@ -58,7 +73,7 @@ svg:not(:root).svg-inline--fa {
 }
 /*-------------------------SIGN UP---------------------------*/
 .signup {
-  z-index: 100;
+  z-index: 151;
   position: fixed;
   top: 0;
   left: 0;
@@ -137,6 +152,7 @@ svg:not(:root).svg-inline--fa {
   padding: 5px;
 }
 .signup .signup-main form .create {
+  margin-top: 10px;
   width: 80%;
   border: 1px solid;
   background-color: #fcfcfc;
@@ -158,7 +174,7 @@ svg:not(:root).svg-inline--fa {
 }
 /*-------------------------LOGIN---------------------------*/
 .login {
-  z-index: 100;
+  z-index: 151;
   position: fixed;
   top: 0;
   left: 0;
@@ -273,7 +289,10 @@ header {
   height: 100%;
   justify-content: space-between;
 }
-.header-main > .logo .header-login li {
+.header-main > .logo .header-login .nav-buttons {
+  display: flex;
+}
+.header-main > .logo .header-login .nav-buttons li {
   cursor: pointer;
   margin-left: 20px;
   padding: 5px 10px;
@@ -342,9 +361,8 @@ header nav li:hover {
 }
 /*-------------------------HER0---------------------------*/
 
-section.hero {
+.hero {
   height: 500px;
-  width: 100vw;
   position: relative;
 }
 .hero-img {
@@ -382,16 +400,17 @@ section.hero {
 /*-------------------------TOP---------------------------*/
 
 .top > section {
-  width: 100%;
+  position: relative;
   height: 700px;
-  background-color: rgb(247, 247, 247);
+  background-color: #f2f2f2;
   border: 2px solid rgb(85, 10, 10);
   border-radius: 10px;
   margin: 30px 0;
-  padding: 20px;
+  padding: 20px 0;
   box-sizing: border-box;
 }
 .top > section h1 {
+  padding-left: 20px;
   font-size: 2rem;
   margin-bottom: 20px;
 }
@@ -401,20 +420,39 @@ section.hero {
   display: flex;
   overflow-x: scroll;
 }
-/* .carousel-root {
-  height: 100%;
+.arrow-left,
+.arrow-right {
+  font-size: 2rem;
+  z-index: 150;
+  position: absolute;
+  color: #fff;
+  background-color: rgb(68, 65, 65, 0.9);
+  border: 2px solid white !important;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 10px;
+  top: 250px;
 }
-.carousel-root .thumbs-wrapper {
-  display: none;
+.arrow-left:hover,
+.arrow-right:hover {
+  opacity: 0.5;
 }
-.carousel.carousel-slider {
-  height: 100%;
+.arrow-left {
+  left: 0;
 }
-.crsl-hero {
-  height: 100%;
-  display: flex;
-  padding: 20px;
-} */
+.arrow-right {
+  right: 0;
+}
+.right_blur_character,
+.right_blur_comic {
+  right: 0;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.6558998599439776) 0%,
+    rgba(0, 0, 0, 0.7315301120448179) 100%
+  );
+}
 .top-card {
   box-sizing: border-box;
   overflow: hidden;
@@ -425,7 +463,6 @@ section.hero {
   flex-shrink: 0;
   width: 300px;
   height: 100%;
-  background-color: aqua;
   margin-left: 20px;
   border-radius: 20px;
 }
@@ -453,6 +490,7 @@ section.hero {
 }
 .see-more {
   margin-top: 10px;
+  padding-right: 20px;
   display: flex;
   justify-content: flex-end;
 }
@@ -467,6 +505,7 @@ section.hero {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+  width: 1250px;
 }
 .comics {
   color: #dbd7d7;
@@ -482,9 +521,10 @@ section.hero {
   overflow: hidden;
   border: 2px solid rgb(124, 52, 52);
   display: flex;
+  flex-direction: column;
   background-color: rgb(255, 255, 255);
-  border-radius: 20px;
-  width: 500px;
+  border-radius: 10px;
+  width: 300px;
   height: 500px;
   color: #202020;
   margin: 10px;
@@ -495,31 +535,44 @@ section.hero {
   right: 20px;
   bottom: 10px;
   font-size: 1.3rem;
-  color: #515355;
+  color: #808080;
 }
 .comic-card .heart:hover {
   color: red;
 }
-.comics .comic-card div:last-child {
-  padding: 20px;
-  width: 40%;
+.desc-block {
+  border-radius: 10px;
+  position: absolute;
+  height: max-content;
+  display: block;
+  overflow: hidden;
+  background-color: rgb(68, 65, 65, 0.9);
+  padding: 5px;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+  top: -500px;
+}
+.comic-card:hover .desc-block {
+  display: block;
+  transition: 0.3s ease;
+  top: 0px;
 }
 .comic-card-img {
-  width: 250px;
-  border-bottom: 2px solid red;
+  width: 100%;
+  height: 87%;
 }
 .comics .comic-card h1 {
-  border-bottom: 2px solid red;
   font-size: 1rem;
+  font-weight: bold;
   margin-bottom: 20px;
+  margin-top: 10px;
 }
 .comics .comic-card p {
-  height: 80%;
-  margin-top: 5px;
-  overflow: scroll;
-  text-align: justify;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 100%;
+  color: #fff;
   font-size: 1rem;
-  margin-bottom: 20px;
   font-family: "Roboto", sans-serif;
   line-height: 1.2rem;
 }
@@ -540,7 +593,8 @@ section.hero {
   background-color: rgb(75, 68, 68);
 }
 .character-card a {
-  height: 90%;
+  height: 80%;
+  width: 100%;
 }
 
 .character-card-img {
@@ -553,7 +607,7 @@ section.hero {
   z-index: 5;
   position: absolute;
   right: 10px;
-  bottom: 20px;
+  bottom: 10px;
   font-size: 1.3rem;
   cursor: pointer;
 }
@@ -575,12 +629,47 @@ section.hero {
   height: 20%;
   color: #dbd7d7;
 }
+@media (max-width: 900px) {
+  .comics .comic-card {
+    width: 30vw;
+    height: 50vw;
+  }
+  .comic-card-img {
+    height: 80%;
+  }
+}
+@media (max-width: 770px) {
+  .comics .comic-card {
+    width: 40vw;
+    height: 60vw;
+  }
+  .comic-card-img {
+    height: 80%;
+  }
+}
+@media (max-width: 570px) {
+  .comics .comic-card {
+    width: 80vw;
+    height: 110vw;
+  }
+  .comic-card-img {
+    height: 83%;
+  }
+}
 /*-------------------------favorites---------------------------*/
+.favoris {
+  min-height: calc(100vh - 151px);
+}
 .favoris h3 {
   width: 100%;
-  margin: 50px 0 10px;
+  padding: 50px 0 10px;
   font-size: 2rem;
   border-bottom: 2px solid;
+}
+@media (max-width: 570px) {
+  .favoris h3 {
+    font-size: 1.5rem;
+  }
 }
 .favoris .galerie-fav-com,
 .favoris .galerie-fav-char {
@@ -590,7 +679,26 @@ section.hero {
   align-items: center;
   flex-wrap: wrap;
 }
+
+.delete-fav {
+  cursor: pointer;
+  position: absolute;
+  color: red;
+  font-size: 1.5rem;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  top: 10px;
+  background-color: white;
+  padding: 4px 8px;
+  border-radius: 50%;
+  z-index: 2;
+}
+.delete-fav:hover {
+  transform: scale(1.2);
+}
 .galerie-card-fav {
+  position: relative;
   box-sizing: border-box;
   overflow: hidden;
   margin: 10px;
@@ -615,23 +723,76 @@ section.hero {
   display: flex;
   justify-content: flex-start;
 }
-
+.no-favorites {
+  width: 100%;
+  height: 100px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /*-------------------------ComicsOfCharacter---------------------------*/
+.comics-of-character {
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  min-height: calc(100vh - 151px);
+}
 .comics-of-character .comics-of-character-hero {
   border-radius: 10px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  /* margin-top: 50px; */
+  margin-bottom: 20px;
   width: 100%;
   height: 400px;
+  overflow: hidden;
   background-color: white;
   display: flex;
   border: 1px grey solid;
+}
+.arrow-gal {
+  top: 50px;
+  display: none;
+}
+.char-info {
+  display: flex;
+  box-sizing: border-box;
+  padding: 20px;
+  width: 99%;
+  height: 200px;
+  z-index: -1;
+  color: #fff;
+}
+.main-title {
+  margin-left: 20px;
+  padding: 20px 0 5px;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  position: relative;
+  width: max-content;
+}
+.main-title::before {
+  content: "";
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+  background-color: red;
+}
+.char-info p {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: flex;
+  align-self: center;
+  line-height: 1.5rem;
+  font-size: 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .comics-of-character h3 {
   font-size: 2rem;
   margin-bottom: 40px;
 }
-.comics-of-character-title {
+/* .comics-of-character-title {
   padding: 20px;
   display: flex;
   box-sizing: border-box;
@@ -640,15 +801,19 @@ section.hero {
   width: 30%;
   font-size: 2rem;
   font-weight: bold;
-}
+} */
 .comics-of-character-hero .comics-of-character-img {
   height: 100%;
-  width: 70%;
+  width: 100%;
+  border-radius: 10px;
 }
 .comics-of-character-hero .comics-of-character-img img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+.carousel {
+  position: relative;
 }
 .galerie {
   display: flex;
@@ -670,11 +835,92 @@ section.hero {
   width: 100%;
   object-fit: cover;
 }
+/*  Large devices (desktops, less than 1200px) */
+@media (max-width: 1290.98px) {
+  .comics-of-character .comics-of-character-hero {
+    width: 99%;
+    height: 350px;
+  }
+  .comics-of-character h3 {
+    padding-left: 20px;
+  }
+  .galerie {
+    padding-left: 20px;
+  }
+  /* .comics-of-character-title {
+    padding: 20px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    align-items: center;
+    width: 30%;
+    font-size: 2rem;
+    font-weight: bold;
+  } */
+  /* .comics-of-character-hero .comics-of-character-img {
+    height: 100%;
+    width: 70%;
+  } */
+
+  .galerie-card {
+    height: 300px;
+    width: 200px;
+  }
+}
+@media (max-width: 900.98px) {
+  .comics-of-character .comics-of-character-hero {
+    width: 99%;
+    height: 300px;
+  }
+  .comics-of-character h3 {
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+  .galerie {
+    padding-left: 20px;
+  }
+  /* .comics-of-character-title {
+    width: 30%;
+  } */
+
+  .galerie-card {
+    height: 45vw;
+    width: 42vw;
+  }
+  /* .comics-of-character-hero .comics-of-character-img {
+    width: 60%;
+    height: 100%;
+  }
+  .comics-of-character-title {
+    width: 40%;
+  } */
+}
+@media (max-width: 590.98px) {
+  .galerie {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+  .arrow-gal {
+    top: 40%;
+    display: block;
+  }
+  .galerie-card {
+    flex-shrink: 0;
+    height: 75vw;
+    width: 45vw;
+  }
+  .comics-of-character .comics-of-character-hero {
+    width: 99%;
+    height: 250px;
+  }
+}
 /*-------------------------FOOTER---------------------------*/
 
 footer {
   border-top: 1px solid rgb(95, 94, 94);
-  width: 100vw;
   background-color: var(--marvel-black);
 }
 footer {
@@ -702,37 +948,11 @@ footer a {
   color: inherit;
   text-decoration: none;
 }
-/* // Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {
-  .hero .img-desc {
-    display: none;
-  }
-}
 
-/* // Small devices (landscape phones, less than 768px) */
-@media (max-width: 767.98px) {
-  header nav {
-    overflow-x: scroll;
-    padding-left: 40px;
-  }
-  section.hero {
-    height: 300px;
-  }
-  .signup {
-    width: 100vw;
-  }
-  .login {
-    width: 100vw;
-  }
-}
-/* // Medium devices (tablets, less than 992px) */
-@media (max-width: 991.98px) {
-}
-
-/* // Large devices (desktops, less than 1200px) */
+/*  Large devices (desktops, less than 1200px) */
 @media (max-width: 1290.98px) {
   .container {
-    width: 100vw;
+    width: 100%;
   }
   header {
     padding: 0 10px;
@@ -746,9 +966,163 @@ footer a {
   }
   .search-search {
     box-sizing: border-box;
+    width: 100%;
+  }
+  .comics .main-comics,
+  .characters .main-characters {
+    width: 100%;
+  }
+}
+
+/*  Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+  .hero {
+    height: 400px;
+  }
+  .hero .img-desc h1 {
+    font-size: 2rem;
+  }
+  .hero .img-desc p {
+    font-size: 1.2rem;
+  }
+  .top > section {
+    height: 500px;
+  }
+  .characters .character-card {
+    height: 300px;
+  }
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  header {
+    height: 70px;
+  }
+  .header-main > .logo {
+    height: 100%;
+    border-bottom: none;
+  }
+  header nav {
+    display: none;
+  }
+  .header-main > .logo .header-login .nav-buttons {
+    display: none;
+  }
+  .characters .character-card {
+    height: 270px;
+    width: 25vw;
+  }
+  .hero {
+    height: 300px;
+  }
+  .hero .img-desc {
+    box-sizing: border-box;
+    left: 0;
+    top: 60%;
+    bottom: 0;
+    border-radius: 0;
+    height: 40%;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgb(172, 162, 162, 0.5);
+  }
+  .hero .img-desc h1 {
+    font-size: 1.7rem;
+    line-height: 30px;
+    margin-bottom: 10px;
+  }
+  .hero .img-desc p {
+    font-size: 1rem;
+    line-height: 20px;
+  }
+  .top > section {
+    width: 100%;
+    height: 400px;
+    padding: 20px 0;
+    border: none;
+  }
+  .top-card {
+    width: 200px;
+  }
+  .top > section h1 {
+    padding-left: 20px;
+    font-size: 1.5rem;
+  }
+  .see-more {
+    padding-right: 20px;
+  }
+  .signup {
     width: 100vw;
   }
-  .characters {
+  .login {
     width: 100vw;
+  }
+  .arrow-left,
+  .arrow-right {
+    font-size: 1rem;
+    top: 50%;
+  }
+  .arrow-gal {
+    top: 40%;
+    display: block;
+  }
+  .login .login-main,
+  .signup .signup-main {
+    height: 100vh;
+    width: 100vw;
+    padding-top: 50%;
+  }
+  .close-modal {
+    font-size: 1.5rem;
+    transition: ease-in 0.4s;
+  }
+  .close-modal:hover {
+    transform: rotate(180deg);
+  }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  .main-title {
+    font-size: 2rem;
+  }
+  .comics-of-character h3 {
+    font-size: 1.5rem;
+  }
+  header {
+    height: 50px;
+  }
+  .header-main > .logo .logo-div {
+    width: 120px;
+  }
+  .hero .img-desc h1 {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    margin-bottom: 10px;
+  }
+  .hero .img-desc p {
+    font-size: 12px;
+    line-height: 12px;
+  }
+  .top > section h1 {
+    font-size: 1.2rem;
+  }
+  .hero {
+    height: 200px;
+  }
+  .top > section {
+    height: 360px;
+  }
+  .top-card {
+    width: 150px;
+  }
+  .characters .character-card {
+    height: 370px;
+    width: 80vw;
+  }
+
+  .character-card a {
+    height: 80%;
+    width: 100%;
   }
 }

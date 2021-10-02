@@ -89,7 +89,7 @@ const Characters = ({
           return (
             elem.thumbnail.path !==
               "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" && (
-              <div>
+              <div key={elem._id}>
                 <div className="character-card">
                   <Link
                     key={elem.id}

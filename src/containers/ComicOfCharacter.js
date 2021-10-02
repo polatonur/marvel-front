@@ -1,6 +1,7 @@
 import { useLocation, useHistory } from "react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ComicsOfCharacter = () => {
   const [charactersData, setCharactersData] = useState(null);
@@ -23,16 +24,19 @@ const ComicsOfCharacter = () => {
       setIsLoading(false);
     };
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  const ref = useRef(0);
 
+  const handleClickScroll = (scrollOffset) => {
+    ref.current.scrollLeft += scrollOffset;
+  };
   return isLoading ? (
     <div>Page is loading</div>
   ) : (
     <div className="comics-of-character container">
+      <h1 className="main-title">{charactersData.comic_data.name}</h1>
       <div className="comics-of-character-hero">
-        <div className="comics-of-character-title">
-          {charactersData.comic_data.name}
-        </div>
         <div className="comics-of-character-img">
           <img
             src={
@@ -45,18 +49,32 @@ const ComicsOfCharacter = () => {
         </div>
       </div>
       <h3>Comics</h3>
-      <div className="galerie">
-        {charactersData.comic_data.comics.map((elem) => {
-          return (
-            <div className="galerie-card">
-              <img
-                src={elem.thumbnail.path + "." + elem.thumbnail.extension}
-                alt=""
-              />
-            </div>
-          );
-        })}
-      </div>
+      <section className="carousel">
+        <div ref={ref} className="galerie">
+          <span onClick={() => handleClickScroll(-330)}>
+            <FontAwesomeIcon
+              className="arrow-left arrow-gal"
+              icon="arrow-left"
+            />
+          </span>
+          <span onClick={() => handleClickScroll(330)}>
+            <FontAwesomeIcon
+              className="arrow-right arrow-gal"
+              icon="arrow-right"
+            />
+          </span>
+          {charactersData.comic_data.comics.map((elem, index) => {
+            return (
+              <div key={index} className="galerie-card">
+                <img
+                  src={elem.thumbnail.path + "." + elem.thumbnail.extension}
+                  alt=""
+                />
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 };

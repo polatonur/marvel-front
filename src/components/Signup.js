@@ -57,6 +57,7 @@ const Signup = ({
               fontSize="1.5rem"
               cursor="pointer"
               icon="times"
+              className="close-modal"
             />
           </div>
           <div className="img-signup">
@@ -85,17 +86,15 @@ const Signup = ({
           <div className="signup-bottom">
             <p>Already have an account?</p>
 
-            <Link>
-              <button
-                onClick={() => {
-                  setDisplayLogin(true);
-                  setDisplaySignup(false);
-                }}
-                className="create"
-              >
-                SIGN IN
-              </button>
-            </Link>
+            <button
+              onClick={() => {
+                setDisplayLogin(true);
+                setDisplaySignup(false);
+              }}
+              className="create"
+            >
+              SIGN IN
+            </button>
           </div>
         </form>
       </div>

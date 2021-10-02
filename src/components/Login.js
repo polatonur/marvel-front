@@ -52,6 +52,7 @@ const Login = ({
               fontSize="1.5rem"
               cursor="pointer"
               icon="times"
+              className="close-modal"
             />
           </div>
           <div className="img-signin">
@@ -72,17 +73,15 @@ const Login = ({
           <p className="error-message-signin">{errorMessage}</p>
           <button type="submit">SIGN IN</button>
 
-          <Link>
-            <button
-              onClick={() => {
-                setDisplayLogin(false);
-                setDisplaySignup(true);
-              }}
-              className="create"
-            >
-              CREATE AN ACCOUNT
-            </button>
-          </Link>
+          <button
+            onClick={() => {
+              setDisplayLogin(false);
+              setDisplaySignup(true);
+            }}
+            className="create"
+          >
+            CREATE AN ACCOUNT
+          </button>
         </form>
       </div>
     </div>

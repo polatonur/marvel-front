@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from "react";
 
 export default ({ data }) => {
@@ -14,7 +15,7 @@ export default ({ data }) => {
           </div>
           <div className="bottom-card">
             {" "}
-            <h2 className="comic-card-title">{elem.title}</h2>
+            <h2 className="comic-card-title">{elem.title.split("#")[0]}</h2>
           </div>
         </div>
       )

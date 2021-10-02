@@ -63,6 +63,7 @@ const Comics = ({ setDisplayLogin, userToken }) => {
     } else {
       const token = Cookies.get("token");
       try {
+        // eslint-disable-next-line no-unused-vars
         const response = await axios.post(
           "https://marvel-back-onur.herokuapp.com/comic/favoris",
           {
@@ -97,7 +98,7 @@ const Comics = ({ setDisplayLogin, userToken }) => {
           return (
             elem.thumbnail.path !==
               "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" && (
-              <div key={elem.id} className="comic-card">
+              <div key={elem._id} className="comic-card">
                 <div className="comic-card-img">
                   <div
                     className="heart"
@@ -112,9 +113,15 @@ const Comics = ({ setDisplayLogin, userToken }) => {
                     alt=""
                   />{" "}
                 </div>
-                <div>
-                  <h1 className="comic-card-title">{elem.title}</h1>
-                  <p className="comic-card-description">{elem.description}</p>
+                <h1 className="comic-card-title">{elem.title}</h1>
+
+                <div className="desc-block">
+                  <p className="comic-card-description">
+                    {elem.description
+                      ?.replace(/&#39;s /gi, "")
+                      ?.replace(/ &ndash;/gi, "")
+                      .replace(/\s\s+/g, " ")}
+                  </p>
                 </div>
               </div>
             )

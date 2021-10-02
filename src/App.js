@@ -8,11 +8,27 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ComicsOfCharacter from "./containers/ComicOfCharacter";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch, faHeart, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faHeart,
+  faTimes,
+  faBars,
+  faArrowRight,
+  faArrowLeft,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import { useState } from "react";
 
-library.add(faSearch, faHeart, faTimes);
+library.add(
+  faSignOutAlt,
+  faSearch,
+  faHeart,
+  faTimes,
+  faBars,
+  faArrowRight,
+  faArrowLeft
+);
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("token") || null);

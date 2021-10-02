@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import marvelLogo from "../assets/img/Marvel.png";
 import Login from "./Login";
+import MenuMobile from "./MenuMobile";
 import Signup from "./Signup";
 
 const Header = ({
@@ -24,25 +25,35 @@ const Header = ({
             </Link>
           </div>
           <div className="header-login">
-            <li
-              style={{ display: userToken && "none" }}
-              onClick={() => setDisplaySignup(true)}
-            >
-              Sign up
-            </li>
-            <li
-              style={{ display: userToken && "none" }}
-              onClick={() => setDisplayLogin(true)}
-            >
-              Login
-            </li>
-            <li
-              className="logout"
-              style={{ display: userToken && "block" }}
-              onClick={() => setUserToken(null)}
-            >
-              Log out
-            </li>
+            <div className="nav-buttons">
+              <li
+                style={{ display: userToken && "none" }}
+                onClick={() => setDisplaySignup(true)}
+              >
+                Sign up
+              </li>
+              <li
+                style={{ display: userToken && "none" }}
+                onClick={() => setDisplayLogin(true)}
+              >
+                Login
+              </li>
+              <li
+                className="logout"
+                style={{ display: userToken && "block" }}
+                onClick={() => setUserToken(null)}
+              >
+                Log out
+              </li>
+            </div>
+            <MenuMobile
+              displayLogin={displayLogin}
+              setDisplayLogin={setDisplayLogin}
+              displaySignup={displaySignup}
+              setDisplaySignup={setDisplaySignup}
+              userToken={userToken}
+              setUserToken={setUserToken}
+            />
           </div>
         </div>
         <nav>

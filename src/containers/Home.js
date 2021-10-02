@@ -2,7 +2,7 @@ import thonosHero from "../assets/img/thanos_hero.jpeg";
 
 import Top from "../components/Top";
 
-const Home = ({}) => {
+const Home = () => {
   return (
     <div>
       <section className="hero">
