@@ -34,7 +34,7 @@ const Top = () => {
     ref2.current.scrollLeft += scrollOffset;
   };
 
-  return isLoading ? (
+  return true ? (
     <div>loading..</div>
   ) : (
     <div className="top container">
