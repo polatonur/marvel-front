@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Loading from "./Loading";
 
 const Top = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,8 +35,8 @@ const Top = () => {
     ref2.current.scrollLeft += scrollOffset;
   };
 
-  return true ? (
-    <div>loading..</div>
+  return isLoading ? (
+    <Loading />
   ) : (
     <div className="top container">
       <section className="popular-character">
